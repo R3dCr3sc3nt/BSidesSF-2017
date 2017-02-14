@@ -16,13 +16,13 @@
 
 As the challenge notes, there is a bug in this challenge that makes it a very straight-forward solve: no crypto needed! `vhash.zip` contains 2 files:
 
-- `index.php` for the login and cookie generation logic
-- `vhash` ELF executable to sign the cookie
+- `index.php`- the login and cookie generation logic
+- `vhash`- ELF executable to sign the cookie
 
-After a normal-usecase walkthrough of the web application, it's clear the getting the flag requires logging in as `administrator` by manipulating the cookie.
+After a walkthrough of the web application, it became clear the getting the flag required logging in as `administrator` by manipulating the cookie.
 
 ![login form](https://github.com/R3dCr3sc3nt/BSidesSF-2017/blob/master/crypto/vhash/login_form.png)
-![login success](https://github.com/R3dCr3sc3nt/BSidesSF-2017/blob/master/crypto/vhash/login_sucess.png)
+![login success](https://github.com/R3dCr3sc3nt/BSidesSF-2017/blob/master/crypto/vhash/login_success.png)
 
 Inspecting the cookie manually confirms that the cookie information displayed in the webpage is correct.
 
@@ -62,7 +62,8 @@ Here is the relevant part of `index.php` used for cookie-setting.
   }
 ```
 
-The secret to solving the challege is finding the bug. After playing around with the vhash binary, it became clear that vhash doesn't take a filename as an arguement, it takes a string. This means the the line `$hash = substr(`/home/ctf/vhash $filename`, 0, 256);` will always produce the same hash, no matter what the the `$data` in the file `$filename` is. Once I made this realization, it was just a matter for changing the `username` in the cookie to `administrator`.
+The secret to solving the challege is finding the bug. After playing around with the vhash binary, I realized that vhash doesn't take a filename as an arguement, it takes a string. This means the the line `$hash = substr(\`/home/ctf/vhash $filename\`, 0, 256);` will always produce the same hash, no matter what the the `$data` in the file `$filename` is. Once I made this realization, it was just a matter for changing the `username` in the cookie to `administrator`.
+
 
 This is the old cookie (from logging in as guest).
 
