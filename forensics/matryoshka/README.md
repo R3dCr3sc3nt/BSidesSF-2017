@@ -26,7 +26,7 @@
 
 ## Solution
 
-As the challenge title (matryoshka aka Russian nesting doll) and description imply, this file is a deeply nested with an absurd number of different compression algorithms.
+As the challenge title (matryoshka aka Russian nesting doll) and description imply, this file is deeply nested with an absurd number of different compression algorithms.
 
 After hours of peeling back the archived/compressed layers with the appropriate tools, I finally arrived at something called `file.wav`. I opened it in [VLC](http://www.videolan.org/vlc/) hoping for some audio output. Sadly, it wasn't that simple.
 
