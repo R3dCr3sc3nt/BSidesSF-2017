@@ -11,7 +11,7 @@
 > [easyshell.zip](easyshell.zip)
 
 ## Solution
-Upon examining the source code of the easyshell program it becomes clear that whatever we send the program will be read into a buffer and executed using the asm() C/C++ function used to embed and execute assembler instructions.
+Upon examining the source code of the easyshell program it becomes clear that whatever is sent to the program will be read into a buffer and executed using the asm() C/C++ function used to embed and execute assembler instructions.
 
 ```
 int main(int argc, char *argv[])
