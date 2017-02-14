@@ -62,7 +62,7 @@ Here is the relevant part of `index.php` used for cookie-setting.
   }
 ```
 
-The secret to solving the challege is finding the bug. After playing around with the vhash binary, I realized that vhash doesn't take a filename as an arguement, it takes a string. This means the the line `$hash = substr(\`/home/ctf/vhash $filename\`, 0, 256);` will always produce the same hash, no matter what the the `$data` in the file `$filename` is. Once I made this realization, it was just a matter for changing the `username` in the cookie to `administrator`.
+The secret to solving the challege is finding the bug. After playing around with the vhash binary, I realized that vhash doesn't take a filename as an arguement, it takes a string. This means the the line ``$hash = substr(`/home/ctf/vhash $filename`, 0, 256);`` will always produce the same hash, no matter what the the `$data` in the file `$filename` is. Once I made this realization, it was just a matter for changing the `username` in the cookie to `administrator`.
 
 
 This is the old cookie (from logging in as guest).
