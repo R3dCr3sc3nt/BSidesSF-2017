@@ -27,7 +27,7 @@
 ## Solution
 As the challenge description describes this file has been archived and compressed in an absurd amount of different compression algorithms. 
 
-After hours of finding the appropriate compression tools I finally arrived a .wav file. I opened it in VLC hoping for some audio output sadly it wasn't that simple. Running `cat` against the file gave me this output.
+After hours of finding the appropriate compression tools I finally arrived at a .wav file. I opened it in VLC hoping for some audio output sadly it wasn't that simple. Running `cat` against the file gave me this output.
 ```
 $ cat file.wav
 RIFF�WAVEfmt dataw.. - ... - .... . .. -. -.-. .-. . -.. .. -... .-.. . ... .... .-. .. -. -.- .. -. --. -- --- .-. ... . -.-. --- -.. .
