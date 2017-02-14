@@ -8,9 +8,9 @@
 
 > x86's NOP is actually another instruction. What is the Intel syntax representation of the assembly of the other instruction?
 
-The flag is `xchg eax, eax`, which can be found in [Wikipedia's entry for NOP](https://en.wikipedia.org/wiki/NOP#Machine_instruction).
-
 > Include a space between operands, if applicable.
+
+The flag is `xchg eax, eax`, which can be found in [Wikipedia's entry for NOP](https://en.wikipedia.org/wiki/NOP#Machine_instruction).
 
 ## Ancient Hop Grain Juice
 
