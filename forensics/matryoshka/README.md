@@ -69,3 +69,5 @@ Running it gave me the flag.
 $ ./decodeMorse.py 
 ITSTHEINCREDIBLESHRINKINGMORSECODE
 ```
+
+If you get a sudden urge to decompress files or just want a list of compression types used here they are [matryoshka compression types](matryoshka.txt). List by "mmc" on the BSidesSF Slack channel.
