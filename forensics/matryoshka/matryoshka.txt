@@ -1,0 +1,37 @@
+zip
+rar
+zip with xz
+compress
+gzip
+tar
+multipart rar
+wim (requires p7zip)
+dact
+cpio
+freeze
+xar
+rzip
+lz4
+cpio
+7zip
+binhex binary text
+Microsoft Cabinet archive data
+StuffIt archive
+lzip
+bz2
+Macintosh HFS Extended
+arj
+tar
+par2
+zoo
+xz
+lzop
+arc (on MS-DOS)
+lha (LHarc 1.x/ARX archive data [lh0])
+ace
+Squashfs filesystem
+zpaq
+ar
+cpio
+flac decompresses to wav
+xxd of wav shows morse code
