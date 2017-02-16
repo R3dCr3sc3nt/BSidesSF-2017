@@ -12,7 +12,7 @@ In this challenge we are linked to a simplistic, static website that claims to h
 
 ![Screenshot of "the-year-2000" homepage challenge.](screenshots/theyear2000-homepage.png)
 
-Indeed, viewing [the source code of the page](assets/http_theyear2000.ctf.bsidessf.net_.html) similarly reveals nothing much of interest. There are two images, `bg.jpg` and `fire.gif`, but both are in the root folder, so there are obvious directories to begin searching in. The only clues on the page are the list of tools that the author claims to have used to make the page:
+Indeed, viewing [the source code of the page](assets/http_theyear2000.ctf.bsidessf.net_.html) similarly reveals nothing much of interest. There are two images, `bg.jpg` and `fire.gif`, but both are in the root folder, so there are no obvious directories to begin searching in. The only clues on the page are the list of tools that the author claims to have used to make the page:
 
 * html
 * notepad++
@@ -21,7 +21,7 @@ Indeed, viewing [the source code of the page](assets/http_theyear2000.ctf.bsides
 
 [HTML](https://en.wikipedia.org/wiki/HTML) is simply the markup language used to construct Web pages, so that's redundant and unhelpful. [Notepad++](https://notepad-plus-plus.org/) is a simple text editor for the Microsoft Windows operating system. This could indicate that the author uses Windows as their main computing platform, but is similarly unhelpful to us here. [Git](https://git-scm.com/) is a popular source control management ("SCM") system (sometimes also called a "version control system (VCS)", and is sometimes used by developers to copy the contents of source code from one server to another, so this could be useful to us. Finally, Apache is the eponymous name of [the Apache HTTP (Web) server](https://httpd.apache.org/) developed by [the Apache Software Foundation](https://apache.org), which may also be useful to us.
 
-The first thing want to do is get more information about the website itself. We only have two useful clues to go on: it was made with git, and is being served by Apache. To begin, we shouldn't just take the author's word for it (after all, they also said "there are no flags here," and we can assume that is an attempt at misdirection).
+The first thing we want to do is get more information about the website itself. We only have two useful clues to go on: it was made with git, and is being served by Apache. To begin, we shouldn't just take the author's word for it (after all, they also said "there are no flags here," and we can assume that is an attempt at misdirection).
 
 To verify that the author indeed used git, we can check for the existence of one or more metadata files that git uses. The most obvious of these is a `.git` directory at the root of a git repository. If the author did indeed use Git during their development process, there might be a `.git` folder somewhere on the website. Since we don't know what other directories exist on this website, we should just check the current one. This means we simply access [http://theyear2000.ctf.bsidessf.net/.git](http://theyear2000.ctf.bsidessf.net/.git) by loading that address into our Web browser.
 
@@ -35,7 +35,7 @@ Two things are interesting about this. First of all, the server didn't respond w
 
 Since we can surmise that a git repository is present, we can further verify this assumption by trying to access some of git's metadata files directly. The next-most obvious location to check is to see if the local Git configuration file, `.git/config` exists. Again, we simply need to load that URL path ([http://theyear2000.ctf.bsidessf.net/.git/config](http://theyear2000.ctf.bsidessf.net/.git/config)) in our browser.
 
-Again, we're greeted with a standard git configuration file:
+We're greeted with a standard git configuration file:
 
 ```
 [core]
@@ -69,7 +69,7 @@ Hmm, what didn't Mark Zuckerberg want to commit? Let's find out!
 
 To find the missing commit, we will want to reconstruct his repository locally so we can explore it ourselves. That means downloading all the git objects and metadata files and placing them into the expected locations on our own computer.
 
-We start by creating a new folder. Let's call it `theyear2000`. Inside that, we want to recreate the `.git` directory. And inside that, we'll want to a directory called `logs`. We can do this in one command:
+We start by creating a new folder. Let's call it `theyear2000`. Inside that, we want to recreate the `.git` directory. And inside that, we'll want to create a directory called `logs`. We can do this in one command:
 
 ```sh
 mkdir -p theyear2000/.git/logs
@@ -149,7 +149,7 @@ $ tree
 5 directories, 5 files
 ```
 
-At this point, however, when we try `git log` again, we get a different error:
+At this point when we try `git log` again, we get a different error:
 
 ```sh
 $ git log
@@ -157,7 +157,7 @@ error: Could not read e039a6684f53e818926d3f62efd25217b25fc97e
 fatal: Failed to traverse parents of commit 4eec6b9c6e464c35fff1efb8444dd0ac1ae67b30
 ```
 
-Here we clearly see that git is trying to locate, but cannot read (or find) the object called `e039a6684f53e818926d3f62efd25217b25fc97e`. Knowing what we do about git object storage, we would expect this file to be in `.git/objects/e0/39a6684f53e818926d3f62efd25217b25fc97e`, but sure enough there is no such file in our local repository. Let's add it. We do this in the same way as we did for the first object. We simply access the URL at [http://theyear2000.ctf.bsidessf.net/.git/objects/e0/39a6684f53e818926d3f62efd25217b25fc97e](http://theyear2000.ctf.bsidessf.net/.git/objects/e0/39a6684f53e818926d3f62efd25217b25fc97e) and saving that file locally in the same directory structure. When we do that, our local repostiory layout looks like this, with two objects instead of one:
+Here we clearly see that git is trying to locate, but cannot read (or find) the object called `e039a6684f53e818926d3f62efd25217b25fc97e`. Knowing what we do about git object storage, we would expect this file to be in `.git/objects/e0/39a6684f53e818926d3f62efd25217b25fc97e`, but sure enough there is no such file in our local repository. Let's add it. We do this in the same way as we did for the first object. We simply access the URL at [http://theyear2000.ctf.bsidessf.net/.git/objects/e0/39a6684f53e818926d3f62efd25217b25fc97e](http://theyear2000.ctf.bsidessf.net/.git/objects/e0/39a6684f53e818926d3f62efd25217b25fc97e) and save that file locally in the same directory structure. When we do that, our local repostiory layout looks like this, with two objects instead of one:
 
 ```sh
 $ tree
@@ -203,7 +203,7 @@ $ git show
 fatal: unable to read tree 0ce1cbf654058dd4b9ba0df440a02aef408f76da
 ```
 
-Here, again, we are told that we can't read (or indeed find) a given object. This object is not a commit, though, it's a tree (a git object that is somewhat analogous to a directory inside of git itself). Notice that this git hash never appeared in the reflog because it's not an object that a user interacts with directly. Nevertheless, we can download it just as we did the other two. After doing so and running `git show` again, however, reveals that we're still missing another object:
+Here, again, we are told that we can't read (or indeed find) a given object. This object is not a commit, though, it's a tree (a git object that is somewhat analogous to a directory inside of git itself). Notice that this git hash never appeared in the reflog because it's not an object that a user interacts with directly. Nevertheless, we can download it just as we did the other two. Doing so and running `git show` again, however, reveals that we're still missing another object:
 
 ```sh
 $ git show
@@ -222,7 +222,7 @@ Date:   Sat Feb 11 22:54:32 2017 +0000
     Wooops, didn't want to commit that. Rebased.
 ```
 
-We can see the commit message, but we are still missing an object (evidenced by the line `fatal: unable to read 7c57d178eea98e174f3d6ef521126117478085ed`), so let's grab that object as well and try again. We still have a missing object:
+We can see the commit message, but we are still missing an object (evidenced by the line `fatal: unable to read 7c57d178eea98e174f3d6ef521126117478085ed`), so let's grab that object as well and try again. We still have another missing object:
 
 ```sh
 $ git show
