@@ -14,7 +14,7 @@ The Zumbo challenge is a three-part challenge.
 
 In this challenge, we are presented with the homepage of a simple website calling itself "Zumbo Dot Com."
 
-![Screenshot of "Zumbo Dot Com" homepage.]()
+![Screenshot of "Zumbo Dot Com" homepage.](zumbo-dot-com-homepage.png)
 
 The only interesting thing on the website is a a counter, which reports that "This site has been visited *some number* times." Refreshing the web page increments the counter, and the counter always seems to count up. This is a good indication that there is some server-side code running on the website keeping track of the number of hits.
 
