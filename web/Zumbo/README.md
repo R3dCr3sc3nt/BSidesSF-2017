@@ -136,3 +136,5 @@ FLAG: RUNNER_ON_SECOND_BASE
 
 <!-- page: ../flag, src: /code/server.py -->
 ```
+
+This technique of navigating around a filesystem in ways that the application developer did not defend against is called a *[path traversal attack](https://en.wikipedia.org/wiki/Directory_traversal_attack)*.
