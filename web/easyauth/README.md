@@ -6,7 +6,7 @@
 
 > http://easyauth-afee0e67.ctf.bsidessf.net
 
-> [easyauth.php](easyauth.php)
+> * [easyauth.php](easyauth.php)
 
 # Solution
 
